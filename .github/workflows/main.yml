@@ -1,16 +1,23 @@
 name: Deploy to VM
+
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-     - name: Copy folder content recursively to remote
-       uses: garygrossgarten/github-action-scp@release
-       with:
-          local: spring-boot-app/*
-          remote: /home/ec2-user/SpringBoot/
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.SSH_USER }}
-          password: ${{ secrets.PASSWORD }}
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: copy using password
+        uses: srueda99/scp-action@v12
+        with:
+            origin: ./spring-boot-app/*
+            host: ${{ secrets.HOST }}
+            destination: "/home/ec2-user/"
+            username: ${{ secrets.SSH_USER }}
+            password: ${{ secrets.PASSWORD }}
