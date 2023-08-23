@@ -15,5 +15,5 @@ jobs:
       - name: Copy files to VM
         run: |
           # Replace with your actual script or commands to copy files to VM
-          scp -r ./spring-boot-app ec2-user@35.89.197.32:/Home/ec2-user/
+          scp -r ./spring-boot-app ec2-user@35.89.197.32:/Home/ec2-user/*
 
