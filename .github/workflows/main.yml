@@ -18,6 +18,6 @@ jobs:
         with:
             origin: ./spring-boot-app/*
             host: ${{ secrets.HOST }}
-            destination: "/home/ec2-user/"
+            destination: "/home/ec2-user/*"
             username: ${{ secrets.SSH_USER }}
             password: ${{ secrets.PASSWORD }}
