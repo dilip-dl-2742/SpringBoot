@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
   deploy:
@@ -13,11 +12,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: copy using password
-        uses: srueda99/scp-action@v12
-        with:
-            origin: ./spring-boot-app/*
-            host: ${{ secrets.HOST }}
-            destination: "/home/ec2-user/*"
-            username: ${{ secrets.SSH_USER }}
-            password: ${{ secrets.PASSWORD }}
+      - name: Copy files to VM
+        run: |
+          # Replace with your actual script or commands to copy files to VM
+          scp -r ./spring-boot-app ec2user@35.89.197.32:/Home/ec2-user/
+
